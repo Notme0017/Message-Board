@@ -1,0 +1,20 @@
+<html>
+  <head>
+    <title>New Message</title>
+    <link rel="stylesheet" href="/styles.css">
+  </head>
+  <body>
+    <% if (error) { %>
+      <span class="error"> <%= error %> </span>
+    <%}%>
+    <form method="POST" action="/new">
+      <label for="message">Message: </label>
+      <textarea id="message" name="messageText"></textarea>
+      <label for="user">User: </label>
+      <input id="user" name="messageUser">
+    
+      <button type="submit">Post</button>
+    </form>
+  </body>
+</html>
+

@@ -1,0 +1,21 @@
+<html>
+  <head>
+    <title>Message Board</title>
+    <link rel="stylesheet" href="/styles.css">
+  </head>
+
+  <body>
+
+    <%- include('nav', {links: links}) %>
+    <ul>
+      <% messages.forEach((message) => { %>
+        <li>
+          <span><%= message.text %></span>
+          <span>User: </span> <span><%= message.user %></span>
+          <span>Date: </span> <span><%= message.added %></span>
+          <a href="/messages/<%= message.id%>"><button type="button">Open</button></a>
+        </li>
+        <%}) %>
+      </ul>
+  </body>
+</html>

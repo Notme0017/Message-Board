@@ -1,0 +1,166 @@
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f4f4f4;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding-top: 50px;
+}
+
+form {
+  background: #fff;
+  padding: 24px;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  width: 320px;
+  gap: 12px;
+}
+
+label {
+  font-weight: bold;
+  margin-bottom: 4px;
+}
+
+textarea,
+input {
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 14px;
+  font-family: inherit;
+}
+
+textarea {
+  min-height: 80px;
+  resize: vertical;
+}
+
+button {
+  padding: 10px;
+  background-color: #4a90d9;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #3b7bc4;
+}
+
+nav {
+  background-color: #2c3e50;
+  padding: 12px 24px;
+}
+
+nav ul {
+  list-style: none;
+  display: flex;
+  gap: 24px;
+  margin: 0;
+  padding: 0;
+}
+
+nav a {
+  text-decoration: none;
+  color: #39bcdd;
+  font-family: Arial, sans-serif;
+  font-size: 15px;
+  font-weight: 500;
+  padding: 6px 4px;
+  transition: color 0.15s ease;
+}
+
+nav a:hover {
+  color: #83d94a;
+}
+
+ul {
+  list-style: none;
+  max-width: 500px;
+  margin: 24px auto;
+  padding: 0;
+}
+
+li {
+  background: #fff;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  padding: 16px;
+  margin-bottom: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+li span:first-child {
+  font-size: 16px;
+  margin-bottom: 4px;
+}
+
+li a {
+  align-self: flex-start;
+  text-decoration: none;
+}
+
+li button {
+  padding: 6px 14px;
+  background-color: #4a90d9;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  font-size: 13px;
+  cursor: pointer;
+}
+
+li button:hover {
+  background-color: #3b7bc4;
+}
+
+body > div {
+  background: #fff;
+  max-width: 500px;
+  margin: 40px auto;
+  padding: 24px;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.message {
+  font-size: 20px;
+  margin-bottom: 16px;
+  line-height: 1.5;
+}
+
+.data {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  color: #555;
+  font-size: 14px;
+  border-top: 1px solid #eee;
+  padding-top: 12px;
+}
+
+.data a {
+  margin-top: 8px;
+  color: #4a90d9;
+  text-decoration: none;
+}
+
+.data a:hover {
+  text-decoration: underline;
+}
+
+.error {
+  background-color: #fdecea;
+  color: #b3261e;
+  border: 1px solid #f5c2c0;
+  border-radius: 4px;
+  padding: 10px 14px;
+  margin-bottom: 16px;
+  font-size: 14px;
+}
