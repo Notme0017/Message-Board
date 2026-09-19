@@ -1,54 +1,67 @@
-const db = require("../db")
+const queries = require("../db/queries");
+const db = require("../db");
+const {body, validationResult, matchedData} = require("express-validator");
 
-async function getMessage(req, res) {
+const lenErr = "must contains letters";
+
+const validateUser = [
+  body("messageText").trim()
+      .isLength({min: 1}).withMessage(`Message ${lenErr}`),
+
+  body("messageUser").trim()
+      .isLength({min: 1}).withMessage(`User ${lenErr}`),
+]
+
+async function getMessage(req, res, next) {
    try{
-    const message = await db.getMessage();
+    const message = await queries.getMessage();
     const links = await db.getLinks();
 
-    if(!message){
-      throw new Error("No messages available");
-    }
     res.render("index", {messages: message, links: links});
    }catch(error){
-    console.log("Error retrieved!");
-    res.status(500).send("Internal Server Error");
+    next(error);
    }
 };
 
-async function addMessage(req, res) {
-  const {messageText, messageUser} = req.body;
+addMessage = [
+  validateUser,
+  async (req, res, next) =>{
+    const {messageText, messageUser} = req.body;
 
-  if (!messageText?.trim() || !messageUser?.trim()) {
-    return res.status(400).render("form", {error: "Message and user name cannot be empty"});
+    const errors = validationResult(req);
+
+    if(!errors.isEmpty()){
+      return res.status(400).render("form", {
+        errors: errors.array(),
+        messageText,
+        messageUser,
+      })
+    }
+
+    try{
+      await queries.addMessage({
+        text: messageText.trim(),
+        user: messageUser.trim()
+      })
+      res.redirect("/");
+    }catch(error){
+      next(error);
+    }
+  }
+]
+
+async function getMessageDetails(req, res, next) {
+  const id = Number(req.params.id);
+  if(!Number.isInteger(id)){
+    return res.status(404).send("Message not found");
   }
 
   try{
-    const message = {
-      text: messageText.trim(),
-      user: messageUser.trim(),
-      added: new Date()
-    }
-
-    if(!message.text || !message.user || !message.added){
-      throw new Error("Message Object not populated in Controller");
-    }
-    await db.addMessage(message);
-    res.redirect("/");
-  }catch(error){
-    console.log("Error retireved");
-    res.status(500).send("Internal server Error");
-  }
-};
-
-async function getMessageDetails(req, res) {
-  try{
-    const message = await db.getMessageById(req.params.id);
-    
+    const message = await queries.getMessageById(id);
     if(!message) return res.status(404).send("Message not found");
     res.render("message", {message});
   }catch(error){
-    console.log("Error retrieving message details:", error);
-    res.status(500).send("Internal Server Error");
+    next(error);
   }
 }
 

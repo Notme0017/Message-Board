@@ -1,14 +1,19 @@
-<html>
+<!DOCTYPE html>
+<html lang="en">
   <head>
-    <title>New Message</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Message Details</title>
     <link rel="stylesheet" href="/styles.css">
   </head>
-  <div>
-    <div class="message"> <%= message.text %></div>
-    <div class="data">
-      <div>By: <%= message.user %></div>
-      <div>Posted: <%=message.added %></div>
-      <a href="/"> Back to all messages</a>
+  <body>
+    <div>
+      <div class="message"><%= message.text %></div>
+      <div class="data">
+        <div>By: <%= message.username %></div>
+        <div>Posted: <%= message.added %></div>
+        <a href="/">Back to all messages</a>
+      </div>
     </div>
-  </div>
+  </body>
 </html>
