@@ -4,14 +4,18 @@
     <link rel="stylesheet" href="/styles.css">
   </head>
   <body>
-    <% if (error) { %>
-      <span class="error"> <%= error %> </span>
+    <% if (locals.errors) { %>
+      <ul>
+        <% errors.forEach(function(error) {%>
+          <span class="error"> <%= error.msg %> </span>
+        <% }) %>
+      </ul>
     <%}%>
     <form method="POST" action="/new">
       <label for="message">Message: </label>
-      <textarea id="message" name="messageText"></textarea>
+      <textarea id="message" name="messageText" value="<%=locals.messageText || '' %>"></textarea>
       <label for="user">User: </label>
-      <input id="user" name="messageUser">
+      <input id="user" name="messageUser" value="<%=locals.messageUser || '' %>">
     
       <button type="submit">Post</button>
     </form>

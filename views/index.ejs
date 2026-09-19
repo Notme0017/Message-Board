@@ -11,7 +11,7 @@
       <% messages.forEach((message) => { %>
         <li>
           <span><%= message.text %></span>
-          <span>User: </span> <span><%= message.user %></span>
+          <span>User: </span> <span><%= message.username %></span>
           <span>Date: </span> <span><%= message.added %></span>
           <a href="/messages/<%= message.id%>"><button type="button">Open</button></a>
         </li>
