@@ -23,6 +23,7 @@ async function main() {
   }
 
   console.log("seeding...");
+  const isLocal = connectionString.includes("localhost");
   const client = new Client({
     connectionString,
     ssl: isLocal? false: {rejectUnauthorized:false},
